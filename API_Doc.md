@@ -12,12 +12,12 @@ GET /schedules
 
 ### Request
 
-| Parameter | Description |
-|--------|----------------|
-| `author_id` | 특정 작성자의 id (optional) |
-| `updated_at` | 특정 작성자의 id (optional) |
-| `page` | 검색할 페이지 번호 (optional, default: 1) |
-| `size` | 페이지당 항목 수 (optional, default: 10) |
+| Parameter | Type | Description | Required |
+|--------|--------|--------|-------------|
+| `author_id` | Query | 특정 작성자의 id | Optional |
+| `updated_at` | Query | 특정 날짜 (YYYY-MM-DD 형식) | Optional |
+| `page` | Query | 검색할 페이지 번호 | Optional, default: 1 |
+| `size` | Query | 페이지당 항목 수 | Optional, default: 10 |
 
 <br>
 
@@ -73,12 +73,12 @@ POST /schedules
 ### Request
 
 **json**
-| Body | Description |
-|--------|----------------|
-| `todo` | 일정 내용 (Required) |
-| `authorName` | 작성자의 이름 (Required) |
-| `email` | 이메일 주소 (Required) |
-| `password` | 비밀번호 (Required) |
+| Body | Type | Description | Required |
+|------|------|-------------|----------|
+| `todo` | String | 일정 내용 | Required |
+| `authorName` | String | 작성자의 이름 | Required |
+| `email` | String | 이메일 주소 | Required |
+| `password` | String | 비밀번호 | Required |
 
 <br>
 
@@ -116,16 +116,16 @@ PUT /schedules/{id}
 
 ### Request
 
-| Parameter | Description |
-|--------|----------------|
-| `id` | 일정의 id 값 (Required) |
+| Parameter | Type | Description | Required |
+|-----------|------|-------------|----------|
+| `id` | Query | 일정의 id 값 (Required) | Required |
 
 **json**
-| Body | Description |
-|--------|----------------|
-| `todo` | 수정할 일정 내용 (Optional) |
-| `authorName` | 수정할 작성자의 이름 (Optional) |
-| `password` | 비밀번호 (Required) |
+| Body | Type | Description | Required |
+|------|------|-------------|----------|
+| `todo` | String | 수정할 일정 내용 | Optional |
+| `authorName` | String | 수정할 작성자의 이름 | Optional |
+| `password` | String | 비밀번호 | Required |
 
 <br>
 
@@ -163,14 +163,14 @@ DELETE /schedules/{id}
 
 ### Request
 
-| Parameter | Description |
-|--------|----------------|
-| `id` | 일정의 id 값 (Required) |
+| Parameter | Type | Description | Required |
+|-----------|------|-------------|----------|
+| `id` | Query | 일정의 id 값 | Required |
 
 **json**
-| Body | Description |
-|--------|----------------|
-| `password` | 비밀번호 (Required) |
+| Body | Stirng | Description | Required |
+|------|--------|-------------|----------|
+| `password` | String |비밀번호 | Required |
 
 <br>
 
