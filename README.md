@@ -16,7 +16,7 @@
 |**우현**|
 |--------|
 |<img src="https://github.com/Developer-Nova/Sec19-Local-Data-Persistance_ByAngela/assets/123448121/17a2ba3b-a618-4ac8-93b9-0d0e02c19c78" width="110" height="110">|
-|[Nova's GitHub](https://github.com/Developer-Nova)|
+|[Groo's GitHub](https://github.com/Developer-Groo)|
 
 <br>
 
