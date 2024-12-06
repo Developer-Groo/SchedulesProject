@@ -168,7 +168,7 @@ DELETE /schedules/{id}
 | `id` | 일정의 id 값 (Required) |
 
 **json**
-| Parameter | Description |
+| Body | Description |
 |--------|----------------|
 | `password` | 비밀번호 (Required) |
 
