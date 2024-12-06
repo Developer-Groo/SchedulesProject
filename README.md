@@ -40,7 +40,7 @@
 
 ## 🛜 API Document
 
--[Document](https://github.com/Developer-Groo/SchedulesProject/blob/main/API_Doc.md)
+- [Document](https://github.com/Developer-Groo/SchedulesProject/blob/main/API_Doc.md)
 
 <br>
 
