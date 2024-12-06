@@ -113,11 +113,15 @@ PUT /schedules/{id}
 
 <br>
 
-### Request (json)
+### Request
 
 | Parameter | Description |
 |--------|----------------|
 | `id` | 일정의 id 값 (Required) |
+
+**json**
+| Body | Description |
+|--------|----------------|
 | `todo` | 수정할 일정 내용 (Optional) |
 | `authorName` | 수정할 작성자의 이름 (Optional) |
 | `password` | 비밀번호 (Required) |
@@ -156,11 +160,15 @@ DELETE /schedules/{id}
 
 <br>
 
-### Request (json)
+### Request
 
 | Parameter | Description |
 |--------|----------------|
 | `id` | 일정의 id 값 (Required) |
+
+**json**
+| Parameter | Description |
+|--------|----------------|
 | `password` | 비밀번호 (Required) |
 
 <br>
