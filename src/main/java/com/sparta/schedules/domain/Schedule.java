@@ -1,21 +1,30 @@
 package com.sparta.schedules.domain;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class Schedule {
 
-    private final Long scheduleId;
+    private Long scheduleId;
 
     private String todo;
 
     private String password;
 
-    private String createdAt;
+    private LocalDateTime createdAt;
 
-    private String updatedAt;
+    private LocalDateTime updatedAt;
+
+    public Schedule() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void setUpdatedAt() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }
