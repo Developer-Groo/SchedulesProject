@@ -5,7 +5,7 @@
 ## ☑️ Index
 - [🏁 Team](#-Team)   
 - [📑 Commit Convention](#-Commit-Convention)   
-- [🛜 Git Flow](#-Git-Flow)
+- [🛜 API Document](#-API-Document)
 - [🔗 Class Diagram](#-Class-Diagram)
 - [🔥 Trouble Shouting](#-Trouble-Shouting)
 - [✅ 마무리](#-마무리)
@@ -38,7 +38,9 @@
 
 <br>
 
-## 🛜 Git Flow
+## 🛜 API Document
+
+-[Document](https://github.com/Developer-Groo/SchedulesProject/blob/main/API_Doc.md)
 
 <br>
 
