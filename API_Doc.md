@@ -70,8 +70,9 @@ POST /schedules
 
 <br>
 
-### Request (json)
+### Request
 
+**json**
 | Body | Description |
 |--------|----------------|
 | `todo` | 일정 내용 (Required) |
