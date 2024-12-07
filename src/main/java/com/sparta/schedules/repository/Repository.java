@@ -14,7 +14,7 @@ public interface Repository {
 
     Schedule save(Schedule schedule);
 
-    void update(Long id, ScheduleUpdateDto updateDto);
+    Schedule update(Long id, ScheduleUpdateDto updateDto);
 
     Optional<Schedule> findById(Long id);
 

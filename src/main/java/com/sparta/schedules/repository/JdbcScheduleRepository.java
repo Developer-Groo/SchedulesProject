@@ -31,8 +31,8 @@ public class JdbcScheduleRepository implements Repository {
     }
 
     @Override
-    public void update(Long id, ScheduleUpdateDto updateDto) {
-
+    public Schedule update(Long id, ScheduleUpdateDto updateDto) {
+        return null;
     }
 
     @Override
