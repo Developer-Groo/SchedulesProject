@@ -76,7 +76,7 @@ POST /schedules
 | Body | Type | Description | Required |
 |------|------|-------------|----------|
 | `todo` | String | 일정 내용 | Required |
-| `authorName` | String | 작성자의 이름 | Required |
+| `author_name` | String | 작성자의 이름 | Required |
 | `email` | String | 이메일 주소 | Required |
 | `password` | String | 비밀번호 | Required |
 
@@ -118,13 +118,13 @@ PUT /schedules/{id}
 
 | Parameter | Type | Description | Required |
 |-----------|------|-------------|----------|
-| `id` | Query | 일정의 id 값 (Required) | Required |
+| `schedule_id` | Query | 일정의 id 값 (Required) | Required |
 
 **json**
 | Body | Type | Description | Required |
 |------|------|-------------|----------|
 | `todo` | String | 수정할 일정 내용 | Optional |
-| `authorName` | String | 수정할 작성자의 이름 | Optional |
+| `author_name` | String | 수정할 작성자의 이름 | Optional |
 | `password` | String | 비밀번호 | Required |
 
 <br>
@@ -165,7 +165,7 @@ DELETE /schedules/{id}
 
 | Parameter | Type | Description | Required |
 |-----------|------|-------------|----------|
-| `id` | Query | 일정의 id 값 | Required |
+| `schedule_id` | Query | 일정의 id 값 | Required |
 
 **json**
 | Body | Stirng | Description | Required |
