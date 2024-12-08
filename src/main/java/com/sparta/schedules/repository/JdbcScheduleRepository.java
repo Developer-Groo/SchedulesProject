@@ -3,6 +3,9 @@ package com.sparta.schedules.repository;
 import com.sparta.schedules.domain.Schedule;
 import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
 import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -10,6 +13,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class JdbcScheduleRepository implements Repository {
@@ -37,7 +41,15 @@ public class JdbcScheduleRepository implements Repository {
 
     @Override
     public Optional<Schedule> findById(Long id) {
-        return Optional.empty();
+        String sql = "select schedule_id, todo, password, created_at, updated_at from schedule where id = :id";
+
+        try {
+            Map<String, Long> param = Map.of("id", id);
+            Schedule schedule = template.queryForObject(sql, param, rowMapper());
+            return Optional.of(schedule);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -48,5 +60,9 @@ public class JdbcScheduleRepository implements Repository {
     @Override
     public Schedule delete(Long id, String password) {
         return null;
+    }
+
+    private RowMapper<Schedule> rowMapper() {
+        return BeanPropertyRowMapper.newInstance(Schedule.class);
     }
 }
