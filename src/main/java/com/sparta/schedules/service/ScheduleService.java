@@ -1,10 +1,9 @@
 package com.sparta.schedules.service;
 
 import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.repository.Repository;
+import com.sparta.schedules.repository.ScheduleRepository;
 import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
 import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +14,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ScheduleService {
 
-    private final Repository repository;
+    private final ScheduleRepository repository;
 
     public Schedule save(Schedule schedule) {
         return repository.save(schedule);
     }
 
-    public Schedule update(Long id, ScheduleUpdateDto updateDto) {
+    public boolean update(Long id, ScheduleUpdateDto updateDto) {
         return repository.update(id, updateDto);
     }
 
@@ -33,7 +32,7 @@ public class ScheduleService {
         return repository.findAll(conditionDto);
     }
 
-    public Schedule delete(Long id, String password) {
+    public boolean delete(Long id, String password) {
         return repository.delete(id, password);
     }
 }

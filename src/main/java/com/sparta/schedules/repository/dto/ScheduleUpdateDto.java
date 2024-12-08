@@ -11,4 +11,5 @@ public class ScheduleUpdateDto {
 
     private String todo;
     private String authorName;
+    private String password;
 }

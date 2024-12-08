@@ -10,15 +10,15 @@ import java.util.Optional;
 /**
  * 추후 JPA 적용을 위한 인터페이스 적용
  */
-public interface Repository {
+public interface ScheduleRepository {
 
     Schedule save(Schedule schedule);
 
-    Schedule update(Long id, ScheduleUpdateDto updateDto);
+    boolean update(Long id, ScheduleUpdateDto updateDto);
 
     Optional<Schedule> findById(Long id);
 
     List<Schedule> findAll(ScheduleSearchConditionDto conditionDto);
 
-    Schedule delete(Long id, String password);
+    boolean delete(Long id, String password);
 }
