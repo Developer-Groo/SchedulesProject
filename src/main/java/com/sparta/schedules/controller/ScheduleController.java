@@ -1,6 +1,8 @@
 package com.sparta.schedules.controller;
 
 import com.sparta.schedules.domain.Schedule;
+import com.sparta.schedules.service.ScheduleService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +12,11 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/schedules")
 public class ScheduleController {
+
+    private final ScheduleService scheduleService;
 
     @GetMapping
     public ResponseEntity<List<Schedule>> getScheduleList(
@@ -26,7 +31,6 @@ public class ScheduleController {
 
     @PostMapping
     public Schedule createSchedule(@RequestBody Schedule schedule) {
-        // 임시 return 값
         return schedule;
     }
 
