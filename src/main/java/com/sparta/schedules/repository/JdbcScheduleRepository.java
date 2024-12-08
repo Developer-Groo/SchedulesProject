@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -36,6 +37,17 @@ public class JdbcScheduleRepository implements Repository {
 
     @Override
     public Schedule update(Long id, ScheduleUpdateDto updateDto) {
+        String sql = "update author a " +
+                "join schedule s on a.author_id = s.author_id " +
+                "set s.todo = :todo, a.name = :name " +
+                "where s.schedule_id = :id";
+
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("todo", updateDto.getTodo());
+        param.addValue("name", updateDto.getAuthorName());
+        param.addValue("schedule_id", id);
+
+        template.update(sql, param);
         return null;
     }
 
