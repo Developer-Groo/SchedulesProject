@@ -19,9 +19,17 @@ public class Schedule {
 
     private LocalDateTime updatedAt;
 
+    private Long authorId;
+
     public Schedule() {
+    }
+
+    public Schedule(String todo, String password, Long authorId) {
+        this.todo = todo;
+        this.password = password;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+        this.authorId = authorId;
     }
 
     public void setUpdatedAt() {
