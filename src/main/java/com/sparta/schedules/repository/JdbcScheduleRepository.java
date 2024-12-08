@@ -25,6 +25,8 @@ public class JdbcScheduleRepository implements ScheduleRepository {
     public JdbcScheduleRepository(DataSource dataSource) {
         this.template = new NamedParameterJdbcTemplate(dataSource);
         this.jdbcInsert = new SimpleJdbcInsert(dataSource);
+        this.jdbcInsert.setTableName("schedule");
+        this.jdbcInsert.usingGeneratedKeyColumns("schedule_id");
     }
 
     @Override
