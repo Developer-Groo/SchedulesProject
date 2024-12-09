@@ -15,6 +15,13 @@ GET /schedules
 ~~~ json
 // 빈 json 요청 - 전체조회
 { }
+
+{
+    "name": "Groo",
+    "updatedAt": "2024-12-09T10:00:00",
+    "page": 1,
+    "size": 10
+}
 ~~~
 
 | Property | Type | Description | Required |
