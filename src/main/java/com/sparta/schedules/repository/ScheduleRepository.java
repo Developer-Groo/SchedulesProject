@@ -1,6 +1,7 @@
 package com.sparta.schedules.repository;
 
 import com.sparta.schedules.domain.Schedule;
+import com.sparta.schedules.repository.dto.ScheduleRequestDto;
 import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
 import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
  */
 public interface ScheduleRepository {
 
-    Schedule save(Schedule schedule);
+    Schedule save(ScheduleRequestDto requestDto);
 
     boolean update(Long id, ScheduleUpdateDto updateDto);
 

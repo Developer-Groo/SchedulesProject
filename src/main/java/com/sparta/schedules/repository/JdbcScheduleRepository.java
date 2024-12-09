@@ -1,8 +1,11 @@
 package com.sparta.schedules.repository;
 
+import com.sparta.schedules.domain.Author;
 import com.sparta.schedules.domain.Schedule;
+import com.sparta.schedules.repository.dto.ScheduleRequestDto;
 import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
 import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,24 +19,38 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.*;
 
+@Slf4j
 @Repository
 public class JdbcScheduleRepository implements ScheduleRepository {
 
     private final NamedParameterJdbcTemplate template;
-    private final SimpleJdbcInsert jdbcInsert;
+    private final SimpleJdbcInsert scheduleInsert;
+    private final SimpleJdbcInsert authorInsert;
 
     public JdbcScheduleRepository(DataSource dataSource) {
         this.template = new NamedParameterJdbcTemplate(dataSource);
-        this.jdbcInsert = new SimpleJdbcInsert(dataSource);
-        this.jdbcInsert.setTableName("schedule");
-        this.jdbcInsert.usingGeneratedKeyColumns("schedule_id");
+        this.scheduleInsert = new SimpleJdbcInsert(dataSource)
+                .withTableName("schedule")
+                .usingGeneratedKeyColumns("schedule_id");
+        this.authorInsert = new SimpleJdbcInsert(dataSource)
+                .withTableName("author")
+                .usingGeneratedKeyColumns("author_id");
     }
 
     @Override
-    public Schedule save(Schedule schedule) {
-        SqlParameterSource param = new BeanPropertySqlParameterSource(schedule);
-        Number key = jdbcInsert.executeAndReturnKey(param);
-        schedule.setScheduleId(key.longValue());
+    public Schedule save(ScheduleRequestDto requestDto) {
+        Author author = requestDto.getAuthor();
+        Schedule schedule = requestDto.getSchedule();
+
+        SqlParameterSource authorParam = new BeanPropertySqlParameterSource(author);
+        Number authorKey = authorInsert.executeAndReturnKey(authorParam);
+        author.setAuthorId(authorKey.longValue());
+        schedule.setAuthorId(authorKey.longValue());
+
+        SqlParameterSource scheduleParam = new BeanPropertySqlParameterSource(schedule);
+        Number scheduleKey = scheduleInsert.executeAndReturnKey(scheduleParam);
+        schedule.setScheduleId(scheduleKey.longValue());
+
         return schedule;
     }
 

@@ -1,7 +1,9 @@
 package com.sparta.schedules.service;
 
+import com.sparta.schedules.domain.Author;
 import com.sparta.schedules.domain.Schedule;
 import com.sparta.schedules.repository.ScheduleRepository;
+import com.sparta.schedules.repository.dto.ScheduleRequestDto;
 import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
 import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +18,8 @@ public class ScheduleService {
 
     private final ScheduleRepository repository;
 
-    public Schedule save(Schedule schedule) {
-        return repository.save(schedule);
+    public Schedule save(ScheduleRequestDto requestDto) {
+        return repository.save(requestDto);
     }
 
     public boolean update(Long id, ScheduleUpdateDto updateDto) {
