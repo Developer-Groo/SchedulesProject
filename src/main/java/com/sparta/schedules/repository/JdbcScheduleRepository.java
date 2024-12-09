@@ -17,9 +17,9 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDateTime;
 import java.util.*;
 
-@Slf4j
 @Repository
 public class JdbcScheduleRepository implements ScheduleRepository {
 
@@ -55,28 +55,28 @@ public class JdbcScheduleRepository implements ScheduleRepository {
     }
 
     @Override
-    public boolean update(Long scheduleId, ScheduleUpdateDto updateDto) {
+    public void update(Long scheduleId, ScheduleUpdateDto updateDto) {
         String sql = "update author a " +
                 "join schedule s on a.author_id = s.author_id " +
                 "set s.todo = :todo, a.name = :name " +
                 "where s.schedule_id = :scheduleId";
 
-        MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("todo", updateDto.getTodo());
-        param.addValue("name", updateDto.getAuthorName());
-        param.addValue("schedule_id", scheduleId);
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("todo", updateDto.getTodo());
+        params.addValue("name", updateDto.getAuthorName());
+        params.addValue("scheduleId", scheduleId);
 
-        template.update(sql, param);
-        return true;
+        template.update(sql, params);
     }
 
     @Override
-    public Optional<Schedule> findById(Long id) {
-        String sql = "select schedule_id, todo, password, created_at, updated_at " +
-                "from schedule where id = :id";
+    public Optional<Schedule> findById(Long scheduleId) {
+        String sql = "select schedule_id, todo, password, created_at, updated_at, author_id " +
+                "from schedule where schedule_id = :scheduleId";
 
         try {
-            Map<String, Long> param = Map.of("id", id);
+            HashMap<String, Object> param = new HashMap<>();
+            param.put("scheduleId", scheduleId);
             Schedule schedule = template.queryForObject(sql, param, rowMapper());
             return Optional.of(schedule);
         } catch (EmptyResultDataAccessException e) {
@@ -86,23 +86,54 @@ public class JdbcScheduleRepository implements ScheduleRepository {
 
     @Override
     public List<Schedule> findAll(ScheduleSearchConditionDto conditionDto) {
-        return List.of();
+        String name = conditionDto.getName();
+        LocalDateTime updatedAt = conditionDto.getUpdatedAt();
+
+        StringBuilder sql = new StringBuilder(
+                "select s.schedule_id, s.todo, s.created_at, s.updated_at, s.author_id, a.name " +
+                "from schedule s " +
+                "join author a on s.author_id = a.author_id"
+        );
+
+        HashMap<String, Object> params = new HashMap<>();
+
+        if ((name != null && !name.isBlank()) || updatedAt != null) {
+            boolean flag = false;
+
+            sql.append(" where");
+
+            if (name != null && !name.isBlank()) {
+                sql.append(" a.name = :name");
+                params.put("name", name);
+                flag = true;
+            }
+
+            if (updatedAt != null) {
+                if (flag) {
+                    sql.append(" and");
+                }
+                sql.append(" s.updated_at >= :updatedAt");
+                params.put("updatedAt", updatedAt);
+            }
+        }
+
+        sql.append(" order by s.updated_at desc");
+
+        return template.query(sql.toString(), params, rowMapper());
     }
 
     @Override
     public boolean delete(Long scheduleId, String password) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("scheduleId", scheduleId);
-        params.put("password", password);
 
         String sql = "delete a, s " +
                 "from author a " +
                 "join schedule s on a.author_id = s.author_id " +
                 "where s.schedule_id = :scheduleId";
 
-        template.update(sql, params);
-
-        return true;
+        int deletedRows = template.update(sql, params);
+        return deletedRows > 0;
     }
 
     private RowMapper<Schedule> rowMapper() {
