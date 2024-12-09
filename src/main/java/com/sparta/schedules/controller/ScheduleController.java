@@ -44,8 +44,8 @@ public class ScheduleController {
     }
 
     @DeleteMapping("/schedule_id={scheduleId}")
-    public ResponseEntity<Boolean> deleteSchedule(@PathVariable Long scheduleId, @RequestBody String password) {
-        boolean delete = scheduleService.delete(scheduleId, password);
-        return ResponseEntity.ok(delete);
+    public ResponseEntity<Schedule> deleteSchedule(@PathVariable Long scheduleId, @RequestBody String password) {
+        Schedule deletedSchedule = scheduleService.delete(scheduleId, password);
+        return ResponseEntity.ok(deletedSchedule);
     }
 }
