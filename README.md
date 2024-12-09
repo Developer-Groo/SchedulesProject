@@ -93,33 +93,21 @@ try {
 아래 코드는 단순히 `.get()` 을 통해 `Optional` 내부의 값을 가져오고 있습니다.
 
 ~~~ java
-
+Optional<Schedule> byId = findById(scheduleId);
+        verifyPassword(byId.get(), password);
 ~~~
 
-<br>
+이렇게 단순히 값을 가져오고 내부에서 `Optional.empty()` 가 반환되고 그 값에 접근하게 되면 `NoSuchElementException` 이 발생하게 됩니다.
 
-### 해결방법
+때문에 안전한 `Optional` 처리가 필요하였습니다.
 
+~~~ java
+return repository.findById(scheduleId)
+                .orElseThrow(() -> new NotFoundException("Requested ID not found"));
+~~~
 
-<br>
+`.orElseThrow` 메서드를 통해 내부에 값이 존재할 경우 해당 값을 꺼내오고 값이 없는 경우에 지정된 예외를 던지도록 수정하였습니다.
 
-### 2.
-
-<br>
-
-### 해결방법
-
- 
-<br>
-
-### 3.
+이렇게 안전하게 `Optional` 값을 처리하게 되면 공통 예외 처리를 통해 클라이언트에게 어떤 문제가 발생하였는지 깔끔하게 전달할 수 있습니다.
 
 <br>
-
-### 해결방법
-
-
-<br>
-<br>
-
-## ✅ 마무리
