@@ -22,12 +22,12 @@ public class ScheduleService {
         return repository.save(requestDto);
     }
 
-    public boolean update(Long id, ScheduleUpdateDto updateDto) {
-        return repository.update(id, updateDto);
+    public void update(Long scheduleId, ScheduleUpdateDto updateDto) {
+        repository.update(scheduleId, updateDto);
     }
 
-    public Optional<Schedule> findById(Long id) {
-        return repository.findById(id);
+    public Optional<Schedule> findById(Long scheduleId) {
+        return repository.findById(scheduleId);
     }
 
     public List<Schedule> findAll(ScheduleSearchConditionDto conditionDto) {
