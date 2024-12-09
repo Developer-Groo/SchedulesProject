@@ -5,6 +5,7 @@ import com.sparta.schedules.repository.dto.ScheduleRequestDto;
 import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
 import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
 import com.sparta.schedules.service.ScheduleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class ScheduleController {
     }
 
     @PostMapping
-    public ResponseEntity<Schedule> createSchedule(@RequestBody ScheduleRequestDto requestDto) {
+    public ResponseEntity<Schedule> createSchedule(@RequestBody @Valid ScheduleRequestDto requestDto) {
         Schedule savedSchedule = scheduleService.save(requestDto);
         return ResponseEntity.ok(savedSchedule);
     }
 
     @PutMapping("/schedule_id={scheduleId}")
-    public String updateSchedule(@PathVariable Long scheduleId, @RequestBody ScheduleUpdateDto updateDto) {
+    public String updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleUpdateDto updateDto) {
         scheduleService.update(scheduleId, updateDto);
         return "OK";
     }
