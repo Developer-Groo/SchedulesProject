@@ -118,8 +118,10 @@ public class JdbcScheduleRepository implements ScheduleRepository {
             }
         }
 
+        // 정렬 쿼리
         sql.append(" order by s.updated_at desc");
 
+        // 페이징 쿼리
         sql.append(" limit :size offset :offset");
         params.put("size", size);
         params.put("offset", (page - 1) * size);
