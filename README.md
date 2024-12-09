@@ -6,7 +6,7 @@
 - [🏁 Team](#-Team)   
 - [📑 Commit Convention](#-Commit-Convention)   
 - [🛜 API Document](#-API-Document)
-- [🔗 Class Diagram](#-Class-Diagram)
+- [🔗 ERD](#-ERD)
 - [🔥 Trouble Shouting](#-Trouble-Shouting)
 - [✅ 마무리](#-마무리)
 
@@ -45,7 +45,7 @@
 <br>
 <br>
 
-## 🔗 Class Diagram
+## 🔗 ERD
 
 
 
