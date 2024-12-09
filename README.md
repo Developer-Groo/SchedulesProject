@@ -9,7 +9,6 @@
 - [🛜 API Document](#-API-Document)
 - [🔗 ERD](#-ERD)
 - [🔥 Trouble Shouting](#-Trouble-Shouting)
-- [✅ 마무리](#-마무리)
 
 <br>
 
@@ -100,6 +99,8 @@ Optional<Schedule> byId = findById(scheduleId);
 이렇게 단순히 값을 가져오고 내부에서 `Optional.empty()` 가 반환되고 그 값에 접근하게 되면 `NoSuchElementException` 이 발생하게 됩니다.
 
 때문에 안전한 `Optional` 처리가 필요합니다.
+
+### 해결방법
 
 ~~~ java
 return repository.findById(scheduleId)
