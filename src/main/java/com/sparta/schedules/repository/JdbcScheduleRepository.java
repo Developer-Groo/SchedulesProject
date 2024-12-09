@@ -128,17 +128,19 @@ public class JdbcScheduleRepository implements ScheduleRepository {
     }
 
     @Override
-    public boolean delete(Long scheduleId, String password) {
+    public Optional<Schedule> delete(Long scheduleId) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("scheduleId", scheduleId);
+
+        Optional<Schedule> byId = findById(scheduleId);
 
         String sql = "delete a, s " +
                 "from author a " +
                 "join schedule s on a.author_id = s.author_id " +
                 "where s.schedule_id = :scheduleId";
 
-        int deletedRows = template.update(sql, params);
-        return deletedRows > 0;
+        template.update(sql, params);
+        return byId;
     }
 
     private RowMapper<Schedule> rowMapper() {
