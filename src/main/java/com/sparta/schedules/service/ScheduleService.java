@@ -1,7 +1,7 @@
 package com.sparta.schedules.service;
 
-import com.sparta.schedules.domain.Author;
 import com.sparta.schedules.domain.Schedule;
+import com.sparta.schedules.exception.IncorrectPasswordException;
 import com.sparta.schedules.repository.ScheduleRepository;
 import com.sparta.schedules.repository.dto.ScheduleRequestDto;
 import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
@@ -23,6 +23,9 @@ public class ScheduleService {
     }
 
     public void update(Long scheduleId, ScheduleUpdateDto updateDto) {
+        Optional<Schedule> byId = findById(scheduleId);
+        verifyPassword(byId.get(), updateDto.getPassword());
+
         repository.update(scheduleId, updateDto);
     }
 
@@ -34,7 +37,17 @@ public class ScheduleService {
         return repository.findAll(conditionDto);
     }
 
-    public boolean delete(Long id, String password) {
-        return repository.delete(id, password);
+    public Schedule delete(Long scheduleId, String password) {
+        Optional<Schedule> byId = findById(scheduleId);
+        verifyPassword(byId.get(), password);
+
+        Optional<Schedule> delete = repository.delete(scheduleId);
+        return delete.get();
+    }
+
+    private void verifyPassword(Schedule schedule, String password) {
+        if (!schedule.getPassword().equals(password)) {
+            throw new IncorrectPasswordException("Password does not match");
+        }
     }
 }
