@@ -99,7 +99,7 @@ Optional<Schedule> byId = findById(scheduleId);
 
 이렇게 단순히 값을 가져오고 내부에서 `Optional.empty()` 가 반환되고 그 값에 접근하게 되면 `NoSuchElementException` 이 발생하게 됩니다.
 
-때문에 안전한 `Optional` 처리가 필요하였습니다.
+때문에 안전한 `Optional` 처리가 필요합니다.
 
 ~~~ java
 return repository.findById(scheduleId)
