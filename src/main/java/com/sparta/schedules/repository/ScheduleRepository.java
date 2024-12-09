@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 추후 JPA 적용을 위한 인터페이스 적용
+ * 추후 JPA 적용을 위한 인터페이스
  */
 public interface ScheduleRepository {
 
