@@ -20,7 +20,7 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @GetMapping
-    public ResponseEntity<List<Schedule>> getScheduleList(ScheduleSearchConditionDto conditionDto) {
+    public ResponseEntity<List<Schedule>> getScheduleList(@RequestBody ScheduleSearchConditionDto conditionDto) {
         List<Schedule> scheduleList = scheduleService.findAll(conditionDto);
         return ResponseEntity.ok(scheduleList);
     }
