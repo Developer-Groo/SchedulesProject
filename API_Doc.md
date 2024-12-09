@@ -168,6 +168,11 @@ PUT /schedules/schedule_id={scheduleId}
 {
     Password does not match
 }
+
+404 Not Found - 해당 일정이 없는 경우
+{
+    Requested ID not found
+}
 ~~~
 
 <br>
