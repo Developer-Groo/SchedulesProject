@@ -2,6 +2,7 @@ package com.sparta.schedules.service;
 
 import com.sparta.schedules.domain.Schedule;
 import com.sparta.schedules.exception.IncorrectPasswordException;
+import com.sparta.schedules.exception.NotFoundException;
 import com.sparta.schedules.repository.ScheduleRepository;
 import com.sparta.schedules.repository.dto.ScheduleRequestDto;
 import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
@@ -10,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,14 +23,15 @@ public class ScheduleService {
     }
 
     public void update(Long scheduleId, ScheduleUpdateDto updateDto) {
-        Optional<Schedule> byId = findById(scheduleId);
-        verifyPassword(byId.get(), updateDto.getPassword());
+        Schedule schedule = findById(scheduleId);
+        verifyPassword(schedule, updateDto.getPassword());
 
         repository.update(scheduleId, updateDto);
     }
 
-    public Optional<Schedule> findById(Long scheduleId) {
-        return repository.findById(scheduleId);
+    public Schedule findById(Long scheduleId) {
+        return repository.findById(scheduleId)
+                .orElseThrow(() -> new NotFoundException(""));
     }
 
     public List<Schedule> findAll(ScheduleSearchConditionDto conditionDto) {
@@ -38,11 +39,11 @@ public class ScheduleService {
     }
 
     public Schedule delete(Long scheduleId, String password) {
-        Optional<Schedule> byId = findById(scheduleId);
-        verifyPassword(byId.get(), password);
+        Schedule schedule= findById(scheduleId);
+        verifyPassword(schedule, password);
 
-        Optional<Schedule> delete = repository.delete(scheduleId);
-        return delete.get();
+        return repository.delete(scheduleId)
+                .orElseThrow(() -> new NotFoundException(""));
     }
 
     private void verifyPassword(Schedule schedule, String password) {
