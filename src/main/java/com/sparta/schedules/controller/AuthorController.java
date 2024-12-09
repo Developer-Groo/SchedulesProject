@@ -1,6 +1,6 @@
 package com.sparta.schedules.controller;
 
-import com.sparta.schedules.domain.Author;
+import com.sparta.schedules.domain.Schedule;
 import com.sparta.schedules.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +19,8 @@ public class AuthorController {
     private final AuthorService authorService;
 
     @GetMapping("/author_id={authorId}")
-    public ResponseEntity<Author> findByAuthorId(@PathVariable Long authorId) {
-        Optional<Author> byId = authorService.findById(authorId);
-        return ResponseEntity.ok(byId.get());
+    public ResponseEntity<Schedule> findByAuthorId(@PathVariable Long authorId) {
+        Schedule schedule = authorService.findById(authorId);
+        return ResponseEntity.ok(schedule);
     }
 }

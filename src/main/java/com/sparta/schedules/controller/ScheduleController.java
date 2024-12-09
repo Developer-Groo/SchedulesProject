@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,8 +27,8 @@ public class ScheduleController {
 
     @GetMapping("/schedule_id={scheduleId}")
     public ResponseEntity<Schedule> findByScheduleId(@PathVariable Long scheduleId) {
-        Optional<Schedule> byId = scheduleService.findById(scheduleId);
-        return ResponseEntity.ok(byId.get());
+        Schedule schedule = scheduleService.findById(scheduleId);
+        return ResponseEntity.ok(schedule);
     }
 
     @PostMapping
