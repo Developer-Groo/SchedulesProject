@@ -1,6 +1,6 @@
 # API Document
 
-### - 일정 조회
+### ☑️ 일정 조회
 
 **일정 목록을 조회합니다.**
 
@@ -12,32 +12,33 @@ GET /schedules
 
 ### Request
 
-| Parameter | Type | Description | Required |
+~~~ json
+// 빈 json 요청 - 전체조회
+{ }
+~~~
+
+| Property | Type | Description | Required |
 |--------|--------|--------|-------------|
-| `author_id` | Query | 특정 작성자의 id | Optional |
-| `updated_at` | Query | 특정 날짜 (YYYY-MM-DD 형식) | Optional |
-| `page` | Query | 검색할 페이지 번호 | Optional, default: 1 |
-| `size` | Query | 페이지당 항목 수 | Optional, default: 10 |
+| `name` | String | 특정 작성자의 이름 | Optional |
+| `updated_at` | LocalDate | 특정 날짜 (YYYY-MM-DD 형식) | Optional |
+| `page` | int | 검색할 페이지 번호 | Optional, default: 1 |
+| `size` | int | 페이지당 항목 수 | Optional, default: 10 |
 
 <br>
 
 ### Response
 ~~~ json
-{
-    "totalCount": 25,
-    "page": 1,
-    "size": 10,
-    "todos": [
-        {
-            "scheduleId": 1,
-            "todo": "Complete project",
-            "authorName": "user name",
-            "createdAt": "2024-12-06T12:00:00",
-            "updatedAt": "2024-12-06T13:00:00"
-        },
-        ...
-    ]
-}
+[
+    {
+        "scheduleId": 17,
+        "todo": "today project",
+        "password": null,
+        "createdAt": "2024-12-09T10:00:00",
+        "updatedAt": "2024-12-09T23:44:06",
+        "authorId": 18
+    },
+   ...
+]
 ~~~
 
 <br>
@@ -45,17 +46,8 @@ GET /schedules
 ### Error
 
 ~~~ json
-404 Not Found - 해당 작성자가 없는 경우
-{
-    "error": "No schedules found.",
-    "details": "No schedules for author with ID 1."
-}
-
-400 Bad Request - 잘못된 날짜 형식
-{
-    "error": "Invalid date format.",
-    "details": "Expected format is 'YYYY-MM-DD'."
-}
+검색 조건의 데이터가 없는 경우
+[]
 ~~~
 
 <br>
