@@ -38,9 +38,9 @@ public class ScheduleController {
     }
 
     @PutMapping("/schedule_id={scheduleId}")
-    public String updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleUpdateDto updateDto) {
+    public ResponseEntity<String> updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleUpdateDto updateDto) {
         scheduleService.update(scheduleId, updateDto);
-        return "OK";
+        return ResponseEntity.ok("OK");
     }
 
     @DeleteMapping("/schedule_id={scheduleId}")
