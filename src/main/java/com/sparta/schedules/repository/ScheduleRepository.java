@@ -21,5 +21,5 @@ public interface ScheduleRepository {
 
     List<Schedule> findAll(ScheduleSearchConditionDto conditionDto);
 
-    boolean delete(Long id, String password);
+    Optional<Schedule> delete(Long id);
 }
