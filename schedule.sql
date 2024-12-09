@@ -15,5 +15,5 @@ CREATE TABLE schedule (
                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                           author_id BIGINT NOT NULL,
-                          FOREIGN KEY (author_id) REFERENCES author(author_id)
+                          FOREIGN KEY (author_id) REFERENCES author(author_id) ON DELETE CASCADE
 );
