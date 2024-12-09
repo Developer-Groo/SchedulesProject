@@ -31,7 +31,7 @@ public class ScheduleService {
 
     public Schedule findById(Long scheduleId) {
         return repository.findById(scheduleId)
-                .orElseThrow(() -> new NotFoundException(""));
+                .orElseThrow(() -> new NotFoundException("Requested ID not found"));
     }
 
     public List<Schedule> findAll(ScheduleSearchConditionDto conditionDto) {
@@ -43,7 +43,7 @@ public class ScheduleService {
         verifyPassword(schedule, password);
 
         return repository.delete(scheduleId)
-                .orElseThrow(() -> new NotFoundException(""));
+                .orElseThrow(() -> new NotFoundException("Requested ID not found"));
     }
 
     private void verifyPassword(Schedule schedule, String password) {
