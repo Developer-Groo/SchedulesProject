@@ -87,6 +87,8 @@ public class JdbcScheduleRepository implements ScheduleRepository {
     public List<Schedule> findAll(ScheduleSearchConditionDto conditionDto) {
         String name = conditionDto.getName();
         LocalDateTime updatedAt = conditionDto.getUpdatedAt();
+        int size = conditionDto.getSize();
+        int page = conditionDto.getPage();
 
         StringBuilder sql = new StringBuilder(
                 "select s.schedule_id, s.todo, s.created_at, s.updated_at, s.author_id, a.name " +
@@ -117,6 +119,10 @@ public class JdbcScheduleRepository implements ScheduleRepository {
         }
 
         sql.append(" order by s.updated_at desc");
+
+        sql.append(" limit :size offset :offset");
+        params.put("size", size);
+        params.put("offset", (page - 1) * size);
 
         return template.query(sql.toString(), params, rowMapper());
     }
