@@ -35,8 +35,4 @@ public class Author {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
-
-    public void setUpdatedAt() {
-        this.updatedAt = LocalDateTime.now();
-    }
 }

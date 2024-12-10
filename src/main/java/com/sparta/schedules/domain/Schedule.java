@@ -36,8 +36,4 @@ public class Schedule {
         this.updatedAt = LocalDateTime.now();
         this.authorId = authorId;
     }
-
-    public void setUpdatedAt() {
-        this.updatedAt = LocalDateTime.now();
-    }
 }
