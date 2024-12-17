@@ -16,7 +16,7 @@ public class AuthorController {
 
     private final AuthorService authorService;
 
-    @GetMapping("/author_id={authorId}")
+    @GetMapping("/{authorId}")
     public ResponseEntity<Schedule> findByAuthorId(@PathVariable Long authorId) {
         Schedule schedule = authorService.findById(authorId);
         return ResponseEntity.ok(schedule);

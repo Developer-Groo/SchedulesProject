@@ -25,7 +25,7 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleList);
     }
 
-    @GetMapping("/schedule_id={scheduleId}")
+    @GetMapping("/{scheduleId}")
     public ResponseEntity<Schedule> findByScheduleId(@PathVariable Long scheduleId) {
         Schedule schedule = scheduleService.findById(scheduleId);
         return ResponseEntity.ok(schedule);
@@ -37,13 +37,13 @@ public class ScheduleController {
         return ResponseEntity.ok(savedSchedule);
     }
 
-    @PutMapping("/schedule_id={scheduleId}")
+    @PutMapping("/{scheduleId}")
     public ResponseEntity<String> updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleUpdateDto updateDto) {
         scheduleService.update(scheduleId, updateDto);
         return ResponseEntity.ok("OK");
     }
 
-    @DeleteMapping("/schedule_id={scheduleId}")
+    @DeleteMapping("/{scheduleId}")
     public ResponseEntity<Schedule> deleteSchedule(@PathVariable Long scheduleId, @RequestBody String password) {
         Schedule deletedSchedule = scheduleService.delete(scheduleId, password);
         return ResponseEntity.ok(deletedSchedule);
