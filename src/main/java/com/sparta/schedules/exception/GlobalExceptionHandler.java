@@ -1,7 +1,5 @@
-package com.sparta.schedules.controller;
+package com.sparta.schedules.exception;
 
-import com.sparta.schedules.exception.IncorrectPasswordException;
-import com.sparta.schedules.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
