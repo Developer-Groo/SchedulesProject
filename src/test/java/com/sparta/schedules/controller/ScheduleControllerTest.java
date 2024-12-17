@@ -2,9 +2,9 @@ package com.sparta.schedules.controller;
 
 import com.sparta.schedules.domain.Author;
 import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.repository.dto.ScheduleRequestDto;
-import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
-import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
+import com.sparta.schedules.dto.ScheduleRequestDto;
+import com.sparta.schedules.dto.ScheduleSearchConditionDto;
+import com.sparta.schedules.dto.ScheduleUpdateDto;
 import com.sparta.schedules.service.ScheduleService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

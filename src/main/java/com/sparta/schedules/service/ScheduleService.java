@@ -4,9 +4,9 @@ import com.sparta.schedules.domain.Schedule;
 import com.sparta.schedules.exception.IncorrectPasswordException;
 import com.sparta.schedules.exception.NotFoundException;
 import com.sparta.schedules.repository.ScheduleRepository;
-import com.sparta.schedules.repository.dto.ScheduleRequestDto;
-import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
-import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
+import com.sparta.schedules.dto.ScheduleRequestDto;
+import com.sparta.schedules.dto.ScheduleSearchConditionDto;
+import com.sparta.schedules.dto.ScheduleUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -2,9 +2,9 @@ package com.sparta.schedules.repository;
 
 import com.sparta.schedules.domain.Author;
 import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.repository.dto.ScheduleRequestDto;
-import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
-import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
+import com.sparta.schedules.dto.ScheduleRequestDto;
+import com.sparta.schedules.dto.ScheduleSearchConditionDto;
+import com.sparta.schedules.dto.ScheduleUpdateDto;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;

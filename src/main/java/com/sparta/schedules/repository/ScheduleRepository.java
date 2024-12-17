@@ -1,9 +1,9 @@
 package com.sparta.schedules.repository;
 
 import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.repository.dto.ScheduleRequestDto;
-import com.sparta.schedules.repository.dto.ScheduleSearchConditionDto;
-import com.sparta.schedules.repository.dto.ScheduleUpdateDto;
+import com.sparta.schedules.dto.ScheduleRequestDto;
+import com.sparta.schedules.dto.ScheduleSearchConditionDto;
+import com.sparta.schedules.dto.ScheduleUpdateDto;
 
 import java.util.List;
 import java.util.Optional;

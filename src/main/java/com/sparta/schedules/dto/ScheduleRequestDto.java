@@ -1,4 +1,4 @@
-package com.sparta.schedules.repository.dto;
+package com.sparta.schedules.dto;
 
 import com.sparta.schedules.domain.Author;
 import com.sparta.schedules.domain.Schedule;
