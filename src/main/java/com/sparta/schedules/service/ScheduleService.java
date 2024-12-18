@@ -36,7 +36,7 @@ public class ScheduleService {
 
     // 전체 일정 조회
     public List<ScheduleResponseDto> findAll(ScheduleSearchConditionDto conditionDto) {
-        Pageable pageRequest = PageRequest.of(conditionDto.getPage(), conditionDto.getSize());
+        Pageable pageRequest = PageRequest.of(conditionDto.getPage() - 1, conditionDto.getSize());
         return queryRepository.findAll(conditionDto, pageRequest);
     }
 
