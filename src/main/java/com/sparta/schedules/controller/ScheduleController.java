@@ -12,7 +12,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -33,13 +35,20 @@ public class ScheduleController {
         schedule.setUser(user);
 
         ScheduleResponseDto savedSchedule = scheduleService.save(schedule);
-        return ResponseEntity.ok(savedSchedule);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedSchedule.getScheduleId())
+                .toUri();
+
+        return ResponseEntity.created(location).body(savedSchedule);
     }
 
     // 일정 조회 (ID)
-    @GetMapping("/{scheduleId}")
-    public ResponseEntity<ScheduleResponseDto> findByScheduleId(@PathVariable Long scheduleId) {
-        Schedule schedule = scheduleService.findById(scheduleId);
+    @GetMapping("/{id}")
+    public ResponseEntity<ScheduleResponseDto> findByScheduleId(@PathVariable Long id) {
+        Schedule schedule = scheduleService.findById(id);
         ScheduleResponseDto findSchedule = new ScheduleResponseDto(schedule);
         return ResponseEntity.ok(findSchedule);
     }
@@ -52,16 +61,16 @@ public class ScheduleController {
     }
 
     // 일정 수정
-    @PutMapping("/{scheduleId}")
-    public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleUpdateDto updateDto) {
-        ScheduleResponseDto updateSchedule = scheduleService.update(scheduleId, updateDto);
+    @PutMapping("/{id}")
+    public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id, @RequestBody @Valid ScheduleUpdateDto updateDto) {
+        ScheduleResponseDto updateSchedule = scheduleService.update(id, updateDto);
         return ResponseEntity.ok(updateSchedule);
     }
 
     // 일정 삭제
-    @DeleteMapping("/{scheduleId}")
-    public ResponseEntity<ScheduleResponseDto> deleteSchedule(@PathVariable Long scheduleId) {
-        ScheduleResponseDto deleteSchedule = scheduleService.delete(scheduleId);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ScheduleResponseDto> deleteSchedule(@PathVariable Long id) {
+        ScheduleResponseDto deleteSchedule = scheduleService.delete(id);
         return ResponseEntity.ok(deleteSchedule);
     }
 }
