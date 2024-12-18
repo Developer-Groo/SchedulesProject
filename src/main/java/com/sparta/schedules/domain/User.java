@@ -1,38 +1,26 @@
 package com.sparta.schedules.domain;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
+@Entity
 @Getter
 @Setter
-public class User {
+@NoArgsConstructor
+public class User extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @NotBlank(message = "이름은 필수입니다.")
     private String name;
 
-    @Email(message = "유효하지 않은 이메일 형식입니다.")
-    @NotBlank(message = "이메일은 필수입니다.")
     private String email;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
-    public User() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
+    private String password;
 }
