@@ -134,3 +134,47 @@ return repository.findById(scheduleId)
 이렇게 안전하게 `Optional` 값을 처리하게 되면 공통 예외 처리를 통해 클라이언트에게 어떤 문제가 발생하였는지 깔끔하게 전달할 수 있습니다.
 
 <br>
+
+### 2. JPA Auditing 설정
+
+`BaseEntity` 를 구현하여 상속받은 모든 객체의 생성일과 수정일의 값 생성을 JPA Auditing 에 위임하려고 하였습니다.    
+하지만 지속적으로 db 에 null 값으로 유지되는것을 확인하였습니다.
+
+~~~ java
+@Getter
+@MappedSuperclass
+public abstract class BaseEntity {
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+}
+~~~
+
+<br>
+
+### 해결방법
+
+JPA 에게 위임하고 싶은 `@CreatedDate`, `@LastModifiedDate` 기능들을 사용하기위한 Listener 설정을 해주지 않아 자동으로 값이 할당되지 못하는 문제였습니다.    
+
+`@EntityListeners(AuditingEntityListener.class)` 가 붙은 엔티티 클래스는 `@CreatedDate` 와 `@LastModifiedDate` 를 사용할 수 있고 엔티티가 저장되거나 업데이트될 때 JPA 가 자동으로 해당 필드를 처리하게 됩니다.
+
+~~~ java
+@Getter
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class) // annotation 추가
+public abstract class BaseEntity {
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+}
+~~~
+
+<br>
