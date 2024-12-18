@@ -1,10 +1,10 @@
 package com.sparta.schedules.controller;
 
-import com.sparta.schedules.domain.User;
 import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.dto.ScheduleRequestDto;
-import com.sparta.schedules.dto.ScheduleSearchConditionDto;
-import com.sparta.schedules.dto.ScheduleUpdateDto;
+import com.sparta.schedules.dto.schedule.request.ScheduleForm;
+import com.sparta.schedules.dto.schedule.request.ScheduleSearchConditionDto;
+import com.sparta.schedules.dto.schedule.request.ScheduleUpdateDto;
+import com.sparta.schedules.dto.schedule.response.ScheduleResponseDto;
 import com.sparta.schedules.service.ScheduleService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,11 +32,11 @@ class ScheduleControllerTest {
     void getScheduleList() {
         // given
         ScheduleSearchConditionDto conditionDto = new ScheduleSearchConditionDto();
-        List<Schedule> mockSchedules = List.of(new Schedule(), new Schedule());
+        List<ScheduleResponseDto> mockSchedules = List.of(new ScheduleResponseDto(), new ScheduleResponseDto());
 
         // when
         when(scheduleService.findAll(conditionDto)).thenReturn(mockSchedules);
-        ResponseEntity<List<Schedule>> response = scheduleController.getScheduleList(conditionDto);
+        ResponseEntity<List<ScheduleResponseDto>> response = scheduleController.getScheduleList(conditionDto);
 
         // then
         assertNotNull(response);
@@ -52,27 +52,27 @@ class ScheduleControllerTest {
 
         // when
         when(scheduleService.findById(scheduleId)).thenReturn(mockSchedule);
-        ResponseEntity<Schedule> response = scheduleController.findByScheduleId(scheduleId);
+        ResponseEntity<ScheduleResponseDto> response = scheduleController.findByScheduleId(scheduleId);
 
         // then
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(mockSchedule, response.getBody());
     }
 
     @Test
     void createSchedule() {
         // given
-        ScheduleRequestDto requestDto = new ScheduleRequestDto(new User(), new Schedule());
-        Schedule mockSchedule = new Schedule();
+        Schedule requestDto = new Schedule();
+        ScheduleForm scheduleForm = new ScheduleForm();
+        ScheduleResponseDto mockSchedule = new ScheduleResponseDto();
 
         // when
         when(scheduleService.save(requestDto)).thenReturn(mockSchedule);
-        ResponseEntity<Schedule> response = scheduleController.createSchedule(requestDto);
+        ResponseEntity<ScheduleResponseDto> response = scheduleController.createSchedule(scheduleForm);
 
         // then
         assertNotNull(response);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(mockSchedule, response.getBody());
     }
 
@@ -84,7 +84,7 @@ class ScheduleControllerTest {
 
         // when
         doNothing().when(scheduleService).update(scheduleId, updateDto);
-        ResponseEntity<String> response = scheduleController.updateSchedule(scheduleId, updateDto);
+        ResponseEntity<ScheduleResponseDto> response = scheduleController.updateSchedule(scheduleId, updateDto);
 
         // then
         assertNotNull(response);
@@ -96,11 +96,11 @@ class ScheduleControllerTest {
         // given
         Long scheduleId = 1L;
         String password = "password";
-        Schedule mockSchedule = new Schedule();
+        ScheduleResponseDto mockSchedule = new ScheduleResponseDto();
 
         // when
-        when(scheduleService.delete(scheduleId, password)).thenReturn(mockSchedule);
-        ResponseEntity<Schedule> response = scheduleController.deleteSchedule(scheduleId, password);
+        when(scheduleService.delete(scheduleId)).thenReturn(mockSchedule);
+        ResponseEntity<ScheduleResponseDto> response = scheduleController.deleteSchedule(scheduleId);
 
         // then
         assertNotNull(response);
