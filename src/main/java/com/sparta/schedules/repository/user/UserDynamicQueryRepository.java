@@ -3,7 +3,6 @@ package com.sparta.schedules.repository.user;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sparta.schedules.domain.User;
 import com.sparta.schedules.dto.user.request.UserSearchConditionDto;
 import com.sparta.schedules.dto.user.response.UserResponseDto;
 import jakarta.persistence.EntityManager;
@@ -37,9 +36,6 @@ public class UserDynamicQueryRepository {
 
     // 유저 이름 기준 검색 조건
     private BooleanExpression likeUserName(String userName) {
-        if (StringUtils.hasText(userName)) {
-            return user.name.like("%" + userName + "%");
-        }
-        return null;
+        return StringUtils.hasText(userName) ? user.name.containsIgnoreCase(userName) : null;
     }
 }
