@@ -2,20 +2,20 @@ package com.sparta.schedules.dto.schedule.response;
 
 import com.sparta.schedules.domain.Schedule;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class ScheduleResponseDto {
 
-    private final Long scheduleId;
-    private final String todoTitle;
-    private final String todoContent;
+    private Long scheduleId;
+    private String todoTitle;
+    private String todoContent;
 
-    private final Long userId;
-    private final String name;
+    private Long userId;
+    private String name;
 
     public ScheduleResponseDto(Schedule schedule) {
         this.scheduleId = schedule.getScheduleId();
