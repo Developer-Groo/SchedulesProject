@@ -1,8 +1,6 @@
-package com.sparta.schedules.dto;
+package com.sparta.schedules.dto.schedule.request;
 
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -12,7 +10,6 @@ import java.time.LocalDateTime;
 public class ScheduleSearchConditionDto {
 
     private String name;
-    private LocalDateTime updatedAt;
 
     @Builder.Default
     private int page = 1;
