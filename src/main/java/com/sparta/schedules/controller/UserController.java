@@ -10,7 +10,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -29,13 +31,20 @@ public class UserController {
         user.setPassword(form.getPassword());
 
         UserResponseDto savedUser = userService.save(user);
-        return ResponseEntity.ok(savedUser);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/id/{id}")
+                .buildAndExpand(savedUser.getUserId())
+                .toUri();
+
+        return ResponseEntity.created(location).body(savedUser);
     }
 
     // 유저 조회 (ID)
-    @GetMapping("/id/{userId}")
-    public ResponseEntity<UserResponseDto> findByUserId(@PathVariable Long userId) {
-        User user = userService.findById(userId);
+    @GetMapping("/id/{id}")
+    public ResponseEntity<UserResponseDto> findByUserId(@PathVariable Long id) {
+        User user = userService.findById(id);
         UserResponseDto findUser = new UserResponseDto(user);
         return ResponseEntity.ok(findUser);
     }
@@ -48,16 +57,16 @@ public class UserController {
     }
 
     // 유저 수정
-    @PutMapping("/{userId}")
-    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long userId, @RequestBody @Valid UserUpdateDto updateDto) {
-        UserResponseDto updateUser = userService.update(userId, updateDto);
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long id, @RequestBody @Valid UserUpdateDto updateDto) {
+        UserResponseDto updateUser = userService.update(id, updateDto);
         return ResponseEntity.ok(updateUser);
     }
 
     // 유저 삭제
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<UserResponseDto> deleteUser(@PathVariable Long userId) {
-        UserResponseDto deleteUser = userService.delete(userId);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UserResponseDto> deleteUser(@PathVariable Long id) {
+        UserResponseDto deleteUser = userService.delete(id);
         return ResponseEntity.ok(deleteUser);
     }
 }
