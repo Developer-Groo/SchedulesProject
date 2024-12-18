@@ -4,8 +4,9 @@ CREATE TABLE user
     user_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
     name       VARCHAR(50)  NOT NULL,
     email      VARCHAR(50)  NOT NULL UNIQUE,
-    password   VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP NULL
+    password   VARCHAR(15) NOT NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL
 );
 
 # 일정 생성
