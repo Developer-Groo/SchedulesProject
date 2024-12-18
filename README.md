@@ -63,7 +63,29 @@
 
 ## 🔗 ERD
 
-<img width="700" src="https://github.com/user-attachments/assets/6d1cf2eb-7cf5-4955-96b6-4b57382ecfdc">
+~~~ mermaid
+
+erDiagram
+    USER {
+        BIGINT user_id PK
+        VARCHAR name
+        VARCHAR email
+        VARCHAR password
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+    SCHEDULE {
+        BIGINT schedule_id PK
+        VARCHAR todo_title
+        TEXT todo_content
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+        BIGINT user_id FK
+    }
+
+    USER ||--o| SCHEDULE : has
+
+~~~
 
 <br>
 <br>
