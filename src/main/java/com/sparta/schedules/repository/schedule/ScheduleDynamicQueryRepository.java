@@ -46,9 +46,6 @@ public class ScheduleDynamicQueryRepository {
 
     // 작성자 기준 검색 조건
     private BooleanExpression likeUserName(String userName) {
-        if (StringUtils.hasText(userName)) {
-            return schedule.user.name.like("%" + userName + "%");
-        }
-        return null;
+        return StringUtils.hasText(userName) ? schedule.user.name.containsIgnoreCase(userName) : null;
     }
 }
