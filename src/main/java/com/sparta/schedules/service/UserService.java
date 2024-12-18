@@ -11,11 +11,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
 
     private final UserRepository repository;
@@ -34,7 +36,7 @@ public class UserService {
 
     // 유저 조회 (Name)
     public List<UserResponseDto> findByName(UserSearchConditionDto conditionDto) {
-        Pageable pageRequest = PageRequest.of(conditionDto.getPage(), conditionDto.getSize());
+        Pageable pageRequest = PageRequest.of(conditionDto.getPage() - 1, conditionDto.getSize());
         return queryRepository.findByName(conditionDto, pageRequest);
     }
 
