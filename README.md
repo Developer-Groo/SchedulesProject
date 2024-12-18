@@ -78,6 +78,7 @@ erDiagram
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
+
     SCHEDULE {
         BIGINT schedule_id PK
         VARCHAR todo_title
@@ -87,7 +88,18 @@ erDiagram
         BIGINT user_id FK
     }
 
+    COMMENT {
+        BIGINT comment_id PK
+        TEXT comment_content
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+        BIGINT user_id FK
+        BIGINT schedule_id FK
+    }
+
     USER ||--o| SCHEDULE : has
+    SCHEDULE ||--o| COMMENT : has
+    USER ||--o| COMMENT : writes
 
 ~~~
 
