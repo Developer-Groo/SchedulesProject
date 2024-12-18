@@ -6,6 +6,7 @@ import com.sparta.schedules.dto.user.request.UserSearchConditionDto;
 import com.sparta.schedules.dto.user.request.UserUpdateDto;
 import com.sparta.schedules.dto.user.response.UserResponseDto;
 import com.sparta.schedules.service.UserService;
+import com.sparta.schedules.web.config.PasswordEncoder;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,17 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     // 유저 생성
     @PostMapping
     public ResponseEntity<UserResponseDto> createUser(@RequestBody @Valid UserForm form) {
+        String encodedPassword = passwordEncoder.encode(form.getPassword());
+
         User user = new User();
         user.setName(form.getName());
         user.setEmail(form.getEmail());
-        user.setPassword(form.getPassword());
+        user.setPassword(encodedPassword);
 
         UserResponseDto savedUser = userService.save(user);
 
