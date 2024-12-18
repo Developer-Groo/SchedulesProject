@@ -1,54 +1,61 @@
 package com.sparta.schedules.service;
 
 import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.exception.IncorrectPasswordException;
+import com.sparta.schedules.dto.schedule.response.ScheduleResponseDto;
 import com.sparta.schedules.exception.NotFoundException;
-import com.sparta.schedules.repository.ScheduleRepository;
-import com.sparta.schedules.dto.ScheduleRequestDto;
-import com.sparta.schedules.dto.ScheduleSearchConditionDto;
-import com.sparta.schedules.dto.ScheduleUpdateDto;
+import com.sparta.schedules.dto.schedule.request.ScheduleSearchConditionDto;
+import com.sparta.schedules.dto.schedule.request.ScheduleUpdateDto;
+import com.sparta.schedules.repository.schedule.ScheduleDynamicQueryRepository;
+import com.sparta.schedules.repository.schedule.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ScheduleService {
 
     private final ScheduleRepository repository;
+    private final ScheduleDynamicQueryRepository queryRepository;
 
-    public Schedule save(ScheduleRequestDto requestDto) {
-        return repository.save(requestDto);
+    // 일정 생성
+    public ScheduleResponseDto save(Schedule schedule) {
+        return new ScheduleResponseDto(repository.save(schedule));
     }
 
-    public void update(Long scheduleId, ScheduleUpdateDto updateDto) {
-        Schedule schedule = findById(scheduleId);
-        verifyPassword(schedule, updateDto.getPassword());
-
-        repository.update(scheduleId, updateDto);
-    }
-
+    // 일정 조회 (ID)
     public Schedule findById(Long scheduleId) {
         return repository.findById(scheduleId)
                 .orElseThrow(() -> new NotFoundException("Requested ID not found"));
     }
 
-    public List<Schedule> findAll(ScheduleSearchConditionDto conditionDto) {
-        return repository.findAll(conditionDto);
+    // 전체 일정 조회
+    public List<ScheduleResponseDto> findAll(ScheduleSearchConditionDto conditionDto) {
+        Pageable pageRequest = PageRequest.of(conditionDto.getPage(), conditionDto.getSize());
+        return queryRepository.findAll(conditionDto, pageRequest);
     }
 
-    public Schedule delete(Long scheduleId, String password) {
-        Schedule schedule= findById(scheduleId);
-        verifyPassword(schedule, password);
+    // 일정 수정
+    public ScheduleResponseDto update(Long scheduleId, ScheduleUpdateDto updateDto) {
+        Schedule findSchedule = findById(scheduleId);
+        String todoTitle = updateDto.getTodoTitle();
+        String todoContent = updateDto.getTodoContent();
 
-        return repository.delete(scheduleId)
-                .orElseThrow(() -> new NotFoundException("Requested ID not found"));
+        findSchedule.setTodoTitle(todoTitle);
+        findSchedule.setTodoContent(todoContent);
+
+        return new ScheduleResponseDto(findSchedule);
     }
 
-    private void verifyPassword(Schedule schedule, String password) {
-        if (!schedule.getPassword().equals(password)) {
-            throw new IncorrectPasswordException("Password does not match");
-        }
+    // 일정 삭제
+    public ScheduleResponseDto delete(Long scheduleId) {
+        Schedule schedule = findById(scheduleId);
+        repository.delete(schedule);
+        return new ScheduleResponseDto(schedule);
     }
 }
