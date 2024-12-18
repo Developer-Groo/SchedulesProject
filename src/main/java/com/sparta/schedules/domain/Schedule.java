@@ -24,7 +24,7 @@ public class Schedule {
 
     private LocalDateTime updatedAt;
 
-    private Long authorId;
+    private Long userId;
 
     public Schedule() {
     }
@@ -34,6 +34,6 @@ public class Schedule {
         this.password = password;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
-        this.authorId = authorId;
+        this.userId = authorId;
     }
 }

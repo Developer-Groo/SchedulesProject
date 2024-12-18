@@ -1,7 +1,7 @@
 package com.sparta.schedules.controller;
 
 import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.service.AuthorService;
+import com.sparta.schedules.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,20 +17,20 @@ import static org.mockito.Mockito.when;
 class AuthorControllerTest {
 
     @InjectMocks
-    private AuthorController authorController;
+    private UserController userController;
 
     @Mock
-    private AuthorService authorService;
+    private UserService userService;
 
     @Test
-    void findByAuthorId() {
+    void findByUserId() {
         // given
-        Long authorId = 1L;
+        Long userId = 1L;
         Schedule mockSchedule = new Schedule();
 
         // when
-        when(authorService.findById(authorId)).thenReturn(mockSchedule);
-        ResponseEntity<Schedule> response = authorController.findByAuthorId(authorId);
+        when(userService.findById(userId)).thenReturn(mockSchedule);
+        ResponseEntity<Schedule> response = userController.findByAuthorId(userId);
 
         // then
         assertNotNull(response);

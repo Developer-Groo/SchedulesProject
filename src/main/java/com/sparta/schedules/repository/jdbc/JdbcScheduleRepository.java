@@ -1,10 +1,11 @@
-package com.sparta.schedules.repository;
+package com.sparta.schedules.repository.jdbc;
 
-import com.sparta.schedules.domain.Author;
+import com.sparta.schedules.domain.User;
 import com.sparta.schedules.domain.Schedule;
 import com.sparta.schedules.dto.ScheduleRequestDto;
 import com.sparta.schedules.dto.ScheduleSearchConditionDto;
 import com.sparta.schedules.dto.ScheduleUpdateDto;
+import com.sparta.schedules.repository.ScheduleRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -38,13 +39,13 @@ public class JdbcScheduleRepository implements ScheduleRepository {
 
     @Override
     public Schedule save(ScheduleRequestDto requestDto) {
-        Author author = requestDto.getAuthor();
+        User author = requestDto.getUser();
         Schedule schedule = requestDto.getSchedule();
 
         SqlParameterSource authorParam = new BeanPropertySqlParameterSource(author);
         Number authorKey = authorInsert.executeAndReturnKey(authorParam);
-        author.setAuthorId(authorKey.longValue());
-        schedule.setAuthorId(authorKey.longValue());
+        author.setUserId(authorKey.longValue());
+        schedule.setUserId(authorKey.longValue());
 
         SqlParameterSource scheduleParam = new BeanPropertySqlParameterSource(schedule);
         Number scheduleKey = scheduleInsert.executeAndReturnKey(scheduleParam);
@@ -62,7 +63,7 @@ public class JdbcScheduleRepository implements ScheduleRepository {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("todo", updateDto.getTodo());
-        params.addValue("name", updateDto.getAuthorName());
+        params.addValue("name", updateDto.getUserName());
         params.addValue("scheduleId", scheduleId);
 
         template.update(sql, params);

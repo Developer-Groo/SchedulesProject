@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class Author {
+public class User {
 
-    private Long authorId;
+    private Long userId;
 
     @NotBlank(message = "이름은 필수입니다.")
     private String name;
@@ -24,12 +24,12 @@ public class Author {
 
     private LocalDateTime updatedAt;
 
-    public Author() {
+    public User() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 
-    public Author(String name, String email) {
+    public User(String name, String email) {
         this.name = name;
         this.email = email;
         this.createdAt = LocalDateTime.now();

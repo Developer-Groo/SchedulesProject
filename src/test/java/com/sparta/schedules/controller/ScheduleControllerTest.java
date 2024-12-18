@@ -1,6 +1,6 @@
 package com.sparta.schedules.controller;
 
-import com.sparta.schedules.domain.Author;
+import com.sparta.schedules.domain.User;
 import com.sparta.schedules.domain.Schedule;
 import com.sparta.schedules.dto.ScheduleRequestDto;
 import com.sparta.schedules.dto.ScheduleSearchConditionDto;
@@ -63,7 +63,7 @@ class ScheduleControllerTest {
     @Test
     void createSchedule() {
         // given
-        ScheduleRequestDto requestDto = new ScheduleRequestDto(new Author(), new Schedule());
+        ScheduleRequestDto requestDto = new ScheduleRequestDto(new User(), new Schedule());
         Schedule mockSchedule = new Schedule();
 
         // when

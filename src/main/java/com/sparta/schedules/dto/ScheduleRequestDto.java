@@ -1,6 +1,6 @@
 package com.sparta.schedules.dto;
 
-import com.sparta.schedules.domain.Author;
+import com.sparta.schedules.domain.User;
 import com.sparta.schedules.domain.Schedule;
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import lombok.Setter;
 public class ScheduleRequestDto {
 
     @Valid
-    private final Author author;
+    private final User user;
 
     @Valid
     private final Schedule schedule;
