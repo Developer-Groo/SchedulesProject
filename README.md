@@ -34,6 +34,10 @@
 
 - Validation
 
+- Querydsl
+
+- Bcrypt
+
 <br>
 
 ## 📑 Commit Convention
