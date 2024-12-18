@@ -22,8 +22,8 @@ public class UserService {
     private final UserDynamicQueryRepository queryRepository;
 
     // 유저 생성
-    public User save(User user) {
-        return repository.save(user);
+    public UserResponseDto save(User user) {
+        return new UserResponseDto(repository.save(user));
     }
 
     // 유저 조회 (ID)
@@ -39,17 +39,21 @@ public class UserService {
     }
 
     // 유저 수정
-    public void update(Long userId, UserUpdateDto updateDto) {
+    public UserResponseDto update(Long userId, UserUpdateDto updateDto) {
         User findUser = findById(userId);
 
         findUser.setName(updateDto.getName());
         findUser.setEmail(updateDto.getEmail());
         findUser.setPassword(updateDto.getPassword());
+
+        return new UserResponseDto(findUser);
     }
 
     // 유저 삭제
-    public void delete(Long user) {
+    public UserResponseDto delete(Long user) {
         User findUser = findById(user);
         repository.delete(findUser);
+
+        return new UserResponseDto(findUser);
     }
 }
