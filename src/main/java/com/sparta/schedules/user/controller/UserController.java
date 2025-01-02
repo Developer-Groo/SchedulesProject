@@ -29,10 +29,11 @@ public class UserController {
     public ResponseEntity<UserResponseDto> createUser(@RequestBody @Valid UserForm form) {
         String encodedPassword = passwordEncoder.encode(form.getPassword());
 
-        User user = new User();
-        user.setName(form.getName());
-        user.setEmail(form.getEmail());
-        user.setPassword(encodedPassword);
+        User user = new User(
+                form.getName(),
+                form.getEmail(),
+                encodedPassword
+        );
 
         UserResponseDto savedUser = userService.save(user);
 
