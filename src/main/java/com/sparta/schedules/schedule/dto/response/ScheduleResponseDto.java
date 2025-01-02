@@ -1,12 +1,11 @@
-package com.sparta.schedules.dto.schedule.response;
+package com.sparta.schedules.schedule.dto.response;
 
-import com.sparta.schedules.domain.Schedule;
+import com.sparta.schedules.schedule.entity.Schedule;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @NoArgsConstructor
 public class ScheduleResponseDto {
 
