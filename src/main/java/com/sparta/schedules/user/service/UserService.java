@@ -17,13 +17,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class UserService {
 
     private final UserRepository repository;
     private final UserDynamicQueryRepository queryRepository;
 
     // 유저 생성
+    @Transactional
     public UserResponseDto save(User user) {
         return new UserResponseDto(repository.save(user));
     }
@@ -41,6 +42,7 @@ public class UserService {
     }
 
     // 유저 수정
+    @Transactional
     public UserResponseDto update(Long userId, UserUpdateDto updateDto) {
         User findUser = findById(userId);
 

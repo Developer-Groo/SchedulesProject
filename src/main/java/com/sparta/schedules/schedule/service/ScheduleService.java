@@ -17,13 +17,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class ScheduleService {
 
     private final ScheduleRepository repository;
     private final ScheduleDynamicQueryRepository queryRepository;
 
     // 일정 생성
+    @Transactional
     public ScheduleResponseDto save(Schedule schedule) {
         return new ScheduleResponseDto(repository.save(schedule));
     }
@@ -41,6 +42,7 @@ public class ScheduleService {
     }
 
     // 일정 수정
+    @Transactional
     public ScheduleResponseDto update(Long scheduleId, ScheduleUpdateDto updateDto) {
         Schedule findSchedule = findById(scheduleId);
         String todoTitle = updateDto.getTodoTitle();
