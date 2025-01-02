@@ -1,12 +1,10 @@
-package com.sparta.schedules.auth.dto;
+package com.sparta.schedules.auth.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class LoginForm {
 
     @Email(message = "유효하지 않은 이메일 형식입니다.")
