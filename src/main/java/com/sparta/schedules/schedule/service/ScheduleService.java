@@ -46,8 +46,7 @@ public class ScheduleService {
         String todoTitle = updateDto.getTodoTitle();
         String todoContent = updateDto.getTodoContent();
 
-        findSchedule.setTodoTitle(todoTitle);
-        findSchedule.setTodoContent(todoContent);
+        findSchedule.updateSchedule(todoTitle, todoContent);
 
         return new ScheduleResponseDto(findSchedule);
     }
