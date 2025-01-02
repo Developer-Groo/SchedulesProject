@@ -1,12 +1,10 @@
-package com.sparta.schedules.dto.user.response;
+package com.sparta.schedules.user.dto.response;
 
-import com.sparta.schedules.domain.User;
+import com.sparta.schedules.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 public class UserResponseDto {
 

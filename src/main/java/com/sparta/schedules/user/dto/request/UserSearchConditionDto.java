@@ -1,9 +1,12 @@
-package com.sparta.schedules.dto.user.request;
+package com.sparta.schedules.user.dto.request;
 
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

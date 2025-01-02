@@ -3,7 +3,6 @@ package com.sparta.schedules.schedule.dto.response;
 import com.sparta.schedules.schedule.entity.Schedule;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
