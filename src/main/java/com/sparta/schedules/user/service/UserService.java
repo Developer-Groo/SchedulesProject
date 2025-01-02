@@ -44,9 +44,11 @@ public class UserService {
     public UserResponseDto update(Long userId, UserUpdateDto updateDto) {
         User findUser = findById(userId);
 
-        findUser.setName(updateDto.getName());
-        findUser.setEmail(updateDto.getEmail());
-        findUser.setPassword(updateDto.getPassword());
+        findUser.updateUser(
+                updateDto.getName(),
+                updateDto.getEmail(),
+                updateDto.getPassword()
+        );
 
         return new UserResponseDto(findUser);
     }
