@@ -1,11 +1,4 @@
-package com.sparta.schedules;
+package com.sparta.schedules.auth.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
-public class ErrorResponseDto {
-    private int status;
-    private String message;
+public record ErrorResponseDto(int status, String message) {
 }
