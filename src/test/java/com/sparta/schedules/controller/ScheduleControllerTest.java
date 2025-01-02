@@ -1,11 +1,12 @@
 package com.sparta.schedules.controller;
 
-import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.dto.schedule.request.ScheduleForm;
-import com.sparta.schedules.dto.schedule.request.ScheduleSearchConditionDto;
-import com.sparta.schedules.dto.schedule.request.ScheduleUpdateDto;
-import com.sparta.schedules.dto.schedule.response.ScheduleResponseDto;
-import com.sparta.schedules.service.ScheduleService;
+import com.sparta.schedules.schedule.entity.Schedule;
+import com.sparta.schedules.schedule.dto.request.ScheduleForm;
+import com.sparta.schedules.schedule.dto.request.ScheduleSearchConditionDto;
+import com.sparta.schedules.schedule.dto.request.ScheduleUpdateDto;
+import com.sparta.schedules.schedule.dto.response.ScheduleResponseDto;
+import com.sparta.schedules.schedule.controller.ScheduleController;
+import com.sparta.schedules.schedule.service.ScheduleService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

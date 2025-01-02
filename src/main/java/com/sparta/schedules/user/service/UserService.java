@@ -1,12 +1,12 @@
-package com.sparta.schedules.service;
+package com.sparta.schedules.user.service;
 
-import com.sparta.schedules.domain.User;
-import com.sparta.schedules.dto.user.request.UserSearchConditionDto;
-import com.sparta.schedules.dto.user.request.UserUpdateDto;
-import com.sparta.schedules.dto.user.response.UserResponseDto;
+import com.sparta.schedules.user.entity.User;
+import com.sparta.schedules.user.dto.request.UserSearchConditionDto;
+import com.sparta.schedules.user.dto.request.UserUpdateDto;
+import com.sparta.schedules.user.dto.response.UserResponseDto;
 import com.sparta.schedules.exception.NotFoundException;
-import com.sparta.schedules.repository.user.UserDynamicQueryRepository;
-import com.sparta.schedules.repository.user.UserRepository;
+import com.sparta.schedules.user.repository.UserDynamicQueryRepository;
+import com.sparta.schedules.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

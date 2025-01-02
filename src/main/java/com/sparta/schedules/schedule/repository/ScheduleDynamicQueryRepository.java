@@ -1,12 +1,10 @@
-package com.sparta.schedules.repository.schedule;
+package com.sparta.schedules.schedule.repository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sparta.schedules.domain.QUser;
-import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.dto.schedule.request.ScheduleSearchConditionDto;
-import com.sparta.schedules.dto.schedule.response.ScheduleResponseDto;
+import com.sparta.schedules.schedule.dto.request.ScheduleSearchConditionDto;
+import com.sparta.schedules.schedule.dto.response.ScheduleResponseDto;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -15,8 +13,8 @@ import org.springframework.util.StringUtils;
 
 import java.util.List;
 
-import static com.sparta.schedules.domain.QSchedule.*;
-import static com.sparta.schedules.domain.QUser.*;
+import static com.sparta.schedules.schedule.entity.QSchedule.schedule;
+import static com.sparta.schedules.user.entity.QUser.user;
 
 @Repository
 public class ScheduleDynamicQueryRepository {

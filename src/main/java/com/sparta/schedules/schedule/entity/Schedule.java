@@ -1,5 +1,7 @@
-package com.sparta.schedules.domain;
+package com.sparta.schedules.schedule.entity;
 
+import com.sparta.schedules.common.BaseEntity;
+import com.sparta.schedules.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

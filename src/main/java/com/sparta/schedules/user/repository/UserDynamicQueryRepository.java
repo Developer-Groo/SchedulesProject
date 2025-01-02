@@ -1,10 +1,10 @@
-package com.sparta.schedules.repository.user;
+package com.sparta.schedules.user.repository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sparta.schedules.dto.user.request.UserSearchConditionDto;
-import com.sparta.schedules.dto.user.response.UserResponseDto;
+import com.sparta.schedules.user.dto.request.UserSearchConditionDto;
+import com.sparta.schedules.user.dto.response.UserResponseDto;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.List;
 
-import static com.sparta.schedules.domain.QUser.*;
+import static com.sparta.schedules.user.entity.QUser.user;
 
 @Repository
 public class UserDynamicQueryRepository {

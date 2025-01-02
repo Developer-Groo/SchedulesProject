@@ -1,12 +1,12 @@
-package com.sparta.schedules.controller;
+package com.sparta.schedules.user.controller;
 
-import com.sparta.schedules.domain.User;
-import com.sparta.schedules.dto.user.request.UserForm;
-import com.sparta.schedules.dto.user.request.UserSearchConditionDto;
-import com.sparta.schedules.dto.user.request.UserUpdateDto;
-import com.sparta.schedules.dto.user.response.UserResponseDto;
-import com.sparta.schedules.service.UserService;
-import com.sparta.schedules.web.config.PasswordEncoder;
+import com.sparta.schedules.user.entity.User;
+import com.sparta.schedules.user.dto.request.UserForm;
+import com.sparta.schedules.user.dto.request.UserSearchConditionDto;
+import com.sparta.schedules.user.dto.request.UserUpdateDto;
+import com.sparta.schedules.user.dto.response.UserResponseDto;
+import com.sparta.schedules.user.service.UserService;
+import com.sparta.schedules.auth.util.PasswordEncoder;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
