@@ -29,10 +29,11 @@ public class ScheduleController {
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> createSchedule(@RequestBody @Valid ScheduleForm form) {
         User user = userService.findById(form.getUserId());
-        Schedule schedule = new Schedule();
-        schedule.setTodoTitle(form.getTodoTitle());
-        schedule.setTodoContent(form.getTodoContent());
-        schedule.setUser(user);
+        Schedule schedule = new Schedule(
+                form.getTodoTitle(),
+                form.getTodoContent(),
+                user
+        );
 
         ScheduleResponseDto savedSchedule = scheduleService.save(schedule);
 
