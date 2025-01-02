@@ -9,7 +9,6 @@ import com.sparta.schedules.user.repository.UserRepository;
 import com.sparta.schedules.auth.util.PasswordEncoder;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
