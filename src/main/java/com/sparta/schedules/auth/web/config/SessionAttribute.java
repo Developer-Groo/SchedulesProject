@@ -1,4 +1,4 @@
-package com.sparta.schedules.web.config;
+package com.sparta.schedules.auth.web.config;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,8 @@
-package com.sparta.schedules.web;
+package com.sparta.schedules.auth.web.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.schedules.ErrorResponseDto;
-import com.sparta.schedules.web.config.SessionAttribute;
+import com.sparta.schedules.auth.dto.response.ErrorResponseDto;
+import com.sparta.schedules.auth.web.config.SessionAttribute;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

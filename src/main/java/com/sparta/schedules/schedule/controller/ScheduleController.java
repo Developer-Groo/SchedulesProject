@@ -1,13 +1,13 @@
-package com.sparta.schedules.controller;
+package com.sparta.schedules.schedule.controller;
 
-import com.sparta.schedules.domain.Schedule;
-import com.sparta.schedules.domain.User;
-import com.sparta.schedules.dto.schedule.request.ScheduleForm;
-import com.sparta.schedules.dto.schedule.request.ScheduleSearchConditionDto;
-import com.sparta.schedules.dto.schedule.request.ScheduleUpdateDto;
-import com.sparta.schedules.dto.schedule.response.ScheduleResponseDto;
-import com.sparta.schedules.service.ScheduleService;
-import com.sparta.schedules.service.UserService;
+import com.sparta.schedules.schedule.entity.Schedule;
+import com.sparta.schedules.user.entity.User;
+import com.sparta.schedules.schedule.dto.request.ScheduleForm;
+import com.sparta.schedules.schedule.dto.request.ScheduleSearchConditionDto;
+import com.sparta.schedules.schedule.dto.request.ScheduleUpdateDto;
+import com.sparta.schedules.schedule.dto.response.ScheduleResponseDto;
+import com.sparta.schedules.schedule.service.ScheduleService;
+import com.sparta.schedules.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.sparta.schedules.domain;
+package com.sparta.schedules.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
