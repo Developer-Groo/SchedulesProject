@@ -1,9 +1,9 @@
 package com.sparta.schedules.web.login;
 
-import com.sparta.schedules.domain.User;
-import com.sparta.schedules.dto.user.response.UserResponseDto;
+import com.sparta.schedules.user.entity.User;
+import com.sparta.schedules.user.dto.response.UserResponseDto;
 import com.sparta.schedules.exception.IncorrectPasswordException;
-import com.sparta.schedules.repository.user.UserRepository;
+import com.sparta.schedules.user.repository.UserRepository;
 import com.sparta.schedules.web.config.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

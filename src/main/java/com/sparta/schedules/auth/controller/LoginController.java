@@ -1,7 +1,7 @@
 package com.sparta.schedules.web.login;
 
-import com.sparta.schedules.dto.login.SuccessResponseDto;
-import com.sparta.schedules.dto.user.response.UserResponseDto;
+import com.sparta.schedules.auth.dto.SuccessResponseDto;
+import com.sparta.schedules.user.dto.response.UserResponseDto;
 import com.sparta.schedules.web.config.SessionAttribute;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

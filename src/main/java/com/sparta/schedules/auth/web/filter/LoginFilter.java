@@ -1,7 +1,7 @@
 package com.sparta.schedules.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.schedules.dto.ErrorResponseDto;
+import com.sparta.schedules.ErrorResponseDto;
 import com.sparta.schedules.web.config.SessionAttribute;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
