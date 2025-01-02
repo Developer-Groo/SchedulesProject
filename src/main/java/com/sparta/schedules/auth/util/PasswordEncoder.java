@@ -1,4 +1,4 @@
-package com.sparta.schedules.web.config;
+package com.sparta.schedules.auth.util;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
